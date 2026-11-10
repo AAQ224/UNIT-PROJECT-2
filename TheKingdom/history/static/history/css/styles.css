@@ -765,3 +765,297 @@ html.dark .navbar-toggler-icon {
         display: none;
     }
 }
+
+/* ========================================
+   DAY 04 — SAUDI STATE DETAIL PAGES
+======================================== */
+
+.era-hero {
+    position: relative;
+    min-height: 580px;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+
+    color: #fff;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.68),
+            rgba(0, 0, 0, 0.4)
+        ),
+        var(--era-image) center / cover no-repeat;
+}
+
+.era-hero-content {
+    position: relative;
+    padding-top: 130px;
+    padding-bottom: 75px;
+}
+
+.era-back {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    color: #fff;
+    margin-bottom: 45px;
+    font-size: 13px;
+}
+
+.era-back:hover {
+    color: #8ce2b0;
+}
+
+.era-label {
+    display: block;
+    color: #9fe4ba;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.era-hero h1 {
+    color: #fff;
+    font-size: clamp(38px, 6vw, 76px);
+    font-weight: 900;
+    line-height: 1.4;
+    margin: 18px 0;
+}
+
+.era-period {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f2f2f2;
+}
+
+.era-scroll {
+    display: inline-flex;
+    gap: 14px;
+    align-items: center;
+    margin-top: 35px;
+    padding: 14px 23px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    font-weight: 700;
+    transition: background-color 0.25s ease;
+}
+
+.era-scroll:hover {
+    background: #fff;
+    color: #153d2a;
+}
+
+/* Overview */
+.era-overview {
+    padding: 100px 0;
+    background: var(--bg);
+}
+
+.era-section-heading {
+    margin-bottom: 35px;
+}
+
+.era-section-heading > span {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.era-section-heading h2 {
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 45px);
+    margin-top: 15px;
+    color: var(--fg);
+}
+
+.era-section-heading p {
+    color: var(--muted);
+    line-height: 2;
+}
+
+.era-intro {
+    max-width: 1050px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 2.4;
+}
+
+.era-facts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 55px;
+}
+
+.era-fact {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+}
+
+.era-fact i {
+    font-size: 28px;
+    color: var(--accent);
+}
+
+.era-fact span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.era-fact strong {
+    color: var(--fg);
+    font-size: 17px;
+}
+
+/* Rulers */
+.era-rulers {
+    padding: 100px 0;
+    background: var(--surface);
+}
+
+.rulers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.ruler-card {
+    overflow: hidden;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.ruler-card:hover {
+    transform: translateY(-7px);
+}
+
+.ruler-image {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.ruler-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.ruler-card:hover .ruler-image img {
+    transform: scale(1.06);
+}
+
+.ruler-number {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    font-size: 12px;
+}
+
+.ruler-content {
+    padding: 22px;
+}
+
+.ruler-period {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.ruler-content h3 {
+    margin: 14px 0;
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 1.6;
+    color: var(--fg);
+}
+
+.ruler-content p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* Bottom CTA */
+.era-end {
+    padding: 90px 0;
+    text-align: center;
+    background: var(--bg);
+}
+
+.era-end h2 {
+    font-weight: 900;
+    color: var(--fg);
+}
+
+.era-end p {
+    margin: 18px 0 30px;
+    color: var(--muted);
+}
+
+.era-home-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background: var(--accent-dark);
+    color: #fff;
+    font-weight: 800;
+}
+
+.era-home-button:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .rulers-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .era-hero {
+        min-height: 520px;
+    }
+
+    .era-overview,
+    .era-rulers,
+    .era-end {
+        padding: 65px 0;
+    }
+
+    .era-facts {
+        grid-template-columns: 1fr;
+    }
+
+    .rulers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .era-intro {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rulers-grid {
+        grid-template-columns: 1fr;
+    }
+}

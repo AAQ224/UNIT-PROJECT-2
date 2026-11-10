@@ -1,0 +1,37 @@
+
+{
+  "first": {
+    "title": "الدولة السعودية الأولى",
+    "period": "1139–1233هـ / 1727–1818م",
+    "capital": "الدرعية",
+    "founder": "الإمام محمد بن سعود",
+    "image": "history/images/eras/first-banner.jpg",
+    "intro": "تأسست الدولة السعودية الأولى عام 1139هـ / 1727م على يد الإمام محمد بن سعود، واتخذت الدرعية عاصمة لها. واستمرت حتى عام 1233هـ / 1818م.",
+    "rulers": [
+      {
+        "name": "الإمام محمد بن سعود",
+        "period": "1727–1765م",
+        "image": "history/images/rulers/imam-muhammad-bin-saud.jpg",
+        "description": "مؤسس الدولة السعودية الأولى."
+      },
+      {
+        "name": "الإمام عبدالعزيز بن محمد",
+        "period": "1765–1803م",
+        "image": "history/images/rulers/abdulaziz-bin-muhammad.jpg",
+        "description": "ثاني حكام الدولة السعودية الأولى."
+      },
+      {
+        "name": "الإمام سعود بن عبدالعزيز",
+        "period": "1803–1814م",
+        "image": "history/images/rulers/saud-bin-abdulaziz.jpg",
+        "description": "ثالث حكام الدولة السعودية الأولى."
+      },
+      {
+        "name": "الإمام عبدالله بن سعود",
+        "period": "1814–1818م",
+        "image": "history/images/rulers/abdullah-bin-saud.jpg",
+        "description": "آخر حكام الدولة السعودية الأولى."
+      }
+    ]
+  }
+}

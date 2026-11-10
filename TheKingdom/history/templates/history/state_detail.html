@@ -1,3 +1,4 @@
+
 {% extends 'history/base.html' %}
 {% load static %}
 
@@ -5,28 +6,140 @@
 
 {% block content %}
 
-<section class="state-detail">
-    <div class="container">
+<!-- STATE HERO -->
+<section class="era-hero"
+         style="--era-image: url('{% static state.image %}');">
 
-        <a href="{% url 'home' %}#states" class="section-kicker">
+    <div class="container era-hero-content">
+
+        <a href="{% url 'home' %}"
+           class="era-back">
             <i class="bi bi-arrow-right"></i>
-            العودة إلى الدول السعودية
+            العودة للرئيسية
         </a>
 
-        <div class="mt-4">
-            <span class="section-kicker">{{ state.period }}</span>
+        <span class="era-label">
+            THE KINGDOM HISTORY
+        </span>
 
-            <h1 class="mt-3">{{ state.title }}</h1>
+        <h1>{{ state.title }}</h1>
 
-            <p>{{ state.description }}</p>
+        <p class="era-period">
+            {{ state.period }}
+        </p>
+
+        <a href="#era-overview" class="era-scroll">
+            اكتشف تاريخ الدولة
+            <i class="bi bi-arrow-down"></i>
+        </a>
+
+    </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="era-overview" class="era-overview">
+    <div class="container">
+
+        <div class="era-section-heading">
+            <span>HISTORICAL OVERVIEW</span>
+            <h2>نبذة تاريخية</h2>
         </div>
 
-        <img
-            src="{% static state.image %}"
-            alt="{{ state.title }}"
-            class="state-detail-image"
-        >
+        <p class="era-intro">
+            {{ state.intro }}
+        </p>
 
+        <div class="era-facts">
+
+            <div class="era-fact">
+                <i class="bi bi-calendar-event"></i>
+                <span>الفترة التاريخية</span>
+                <strong>{{ state.period }}</strong>
+            </div>
+
+            <div class="era-fact">
+                <i class="bi bi-geo-alt"></i>
+                <span>العاصمة</span>
+                <strong>{{ state.capital }}</strong>
+            </div>
+
+            <div class="era-fact">
+                <i class="bi bi-person-badge"></i>
+                <span>المؤسس</span>
+                <strong>{{ state.founder }}</strong>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- RULERS -->
+<section class="era-rulers">
+    <div class="container">
+
+        <div class="era-section-heading">
+            <span>LEADERS THROUGH HISTORY</span>
+            <h2>
+                {% if era == 'third' %}
+                    ملوك المملكة العربية السعودية
+                {% else %}
+                    حكام {{ state.title }}
+                {% endif %}
+            </h2>
+            <p>تعرّف على القادة الذين ساهموا في تشكيل تاريخ الدولة.</p>
+        </div>
+
+        <div class="rulers-grid">
+
+            {% for ruler in state.rulers %}
+
+            <article class="ruler-card">
+
+                <div class="ruler-image">
+                    <img
+                        src="{% static ruler.image %}"
+                        alt="{{ ruler.name }}"
+                        loading="lazy"
+                    >
+
+                    <span class="ruler-number">
+                        {{ forloop.counter|stringformat:"02d" }}
+                    </span>
+                </div>
+
+                <div class="ruler-content">
+                    <span class="ruler-period">
+                        {{ ruler.period }}
+                    </span>
+
+                    <h3>{{ ruler.name }}</h3>
+
+                    <p>{{ ruler.description }}</p>
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+<!-- NEXT STEP -->
+<section class="era-end">
+    <div class="container">
+        <h2>رحلتنا عبر التاريخ مستمرة</h2>
+
+        <p>
+            اكتشف بقية مراحل تاريخ المملكة العربية السعودية.
+        </p>
+
+        <a href="{% url 'home' %}" class="era-home-button">
+            العودة إلى الدول السعودية
+            <i class="bi bi-arrow-left"></i>
+        </a>
     </div>
 </section>
 
