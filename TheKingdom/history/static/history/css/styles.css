@@ -1382,3 +1382,319 @@ html.dark .navbar-toggler-icon {
         transition: none;
     }
 }
+
+/* ========================================
+   DAY 06 — NAVIGATION & MOBILE IMPROVEMENTS
+======================================== */
+
+/* Better anchor scrolling with fixed navbar */
+#era-overview,
+#rulers {
+    scroll-margin-top: 95px;
+}
+
+/* ========================================
+   RULER CARD LINKS
+======================================== */
+
+.ruler-card-link {
+    display: block;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.ruler-card-link:hover {
+    color: inherit;
+}
+
+.ruler-card-link:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.ruler-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 15px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.ruler-card-link:hover .ruler-read-more i {
+    transform: translate(-3px, -3px);
+}
+
+.ruler-read-more i {
+    transition: transform 0.25s ease;
+}
+
+/* ========================================
+   STATE NAVIGATION
+======================================== */
+
+.states-navigation {
+    padding: 90px 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+}
+
+.states-navigation-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.states-navigation-heading h2 {
+    margin: 15px 0;
+    color: var(--fg);
+    font-size: clamp(27px, 4vw, 42px);
+    font-weight: 900;
+}
+
+.states-navigation-heading p {
+    color: var(--muted);
+    line-height: 2;
+}
+
+.states-navigation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.state-navigation-card {
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+
+    color: var(--fg);
+    text-decoration: none;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.state-navigation-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    color: var(--fg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+}
+
+.state-navigation-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.state-navigation-card strong {
+    color: var(--fg);
+    font-size: clamp(19px, 2vw, 27px);
+    font-weight: 900;
+}
+
+.state-navigation-placeholder {
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--muted);
+    text-align: center;
+    font-size: 14px;
+}
+
+.states-home-link {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin: 35px auto 0;
+    padding: 13px 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--fg);
+    background: var(--surface);
+    font-weight: 800;
+
+    transition:
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.states-home-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ========================================
+   DROPDOWN & MOBILE NAVIGATION
+======================================== */
+
+.navbar .dropdown-item.active,
+.navbar .dropdown-item:active {
+    background: var(--accent-dark);
+    color: #ffffff;
+}
+
+.navbar .dropdown-menu {
+    min-width: 225px;
+}
+
+@media (max-width: 991px) {
+
+    .navbar-collapse {
+        max-height: calc(100dvh - 95px);
+        overflow-y: auto;
+    }
+
+    .navbar .dropdown-menu {
+        border-radius: 12px;
+        box-shadow: none;
+        margin-top: 8px;
+    }
+
+    .navbar .dropdown-item {
+        padding: 13px 16px;
+    }
+
+    .navbar .theme-toggle {
+        margin-top: 12px;
+    }
+
+    /* Keep navbar text readable when menu is open */
+    .navbar-home:has(.navbar-collapse.show),
+    .navbar-home:has(.navbar-collapse.collapsing) {
+        background: var(--nav-active-bg);
+    }
+
+    .navbar-home:has(.navbar-collapse.show) .navbar-brand,
+    .navbar-home:has(.navbar-collapse.collapsing) .navbar-brand {
+        color: var(--nav-active-text) !important;
+    }
+}
+
+/* ========================================
+   TABLET & MOBILE LAYOUT
+======================================== */
+
+@media (max-width: 768px) {
+
+    .states-navigation {
+        padding: 65px 0;
+    }
+
+    .states-navigation-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .state-navigation-card,
+    .state-navigation-placeholder {
+        min-height: 125px;
+        padding: 23px;
+    }
+
+    .era-hero h1 {
+        font-size: clamp(34px, 8vw, 54px);
+    }
+
+    .era-facts {
+        gap: 14px;
+    }
+
+    .era-fact {
+        padding: 24px;
+    }
+
+    .rulers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .ruler-content {
+        padding: 17px;
+    }
+
+    .ruler-content h3 {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .rulers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ruler-image {
+        aspect-ratio: 5 / 4;
+    }
+
+    .ruler-hero h1 {
+        font-size: 34px;
+    }
+
+    .ruler-fact-card {
+        padding: 20px;
+    }
+
+    .navbar-brand {
+        font-size: 20px;
+    }
+
+    .brand-icon {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .footer-content {
+        gap: 20px;
+    }
+}
+
+/* Touch-friendly interactive elements */
+@media (hover: none) {
+
+    .state-navigation-card:hover,
+    .ruler-card:hover {
+        transform: none;
+    }
+
+    .navbar .dropdown-item {
+        min-height: 44px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+    .state-navigation-card,
+    .ruler-read-more i,
+    .states-home-link {
+        transition: none;
+    }
+}

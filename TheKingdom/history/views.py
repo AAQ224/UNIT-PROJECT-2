@@ -7,6 +7,7 @@ from django.http import Http404
 from django.shortcuts import render
 
 
+# Data files directory
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
 
@@ -26,10 +27,12 @@ def load_rulers():
         return json.load(file)
 
 
+# Homepage
 def home(request):
     return render(request, "history/home.html")
 
 
+# Saudi state details
 def state_detail(request, era):
     states = load_states()
     state = states.get(era)
@@ -37,7 +40,30 @@ def state_detail(request, era):
     if state is None:
         raise Http404("الدولة المطلوبة غير موجودة")
 
-    # Add a URL slug based on each ruler's existing image filename.
+    # Get state order directly from JSON
+    state_keys = list(states.keys())
+    current_index = state_keys.index(era)
+
+    previous_state = None
+    next_state = None
+
+    if current_index > 0:
+        previous_slug = state_keys[current_index - 1]
+
+        previous_state = {
+            "slug": previous_slug,
+            "title": states[previous_slug]["title"],
+        }
+
+    if current_index < len(state_keys) - 1:
+        next_slug = state_keys[current_index + 1]
+
+        next_state = {
+            "slug": next_slug,
+            "title": states[next_slug]["title"],
+        }
+
+    # Add ruler URLs based on image filenames
     rulers = [
         {
             **ruler,
@@ -53,10 +79,13 @@ def state_detail(request, era):
             "state": state,
             "era": era,
             "rulers": rulers,
+            "previous_state": previous_state,
+            "next_state": next_state,
         },
     )
 
 
+# Ruler biography page
 def ruler_detail(request, slug):
     rulers_data = load_rulers()
     states = load_states()
@@ -66,13 +95,15 @@ def ruler_detail(request, slug):
     if ruler is None:
         raise Http404("الحاكم المطلوب غير موجود")
 
-    # Identify the state associated with this ruler.
     era = None
     state_title = None
 
     for state_slug, state in states.items():
         for state_ruler in state.get("rulers", []):
-            image_slug = Path(state_ruler["image"]).stem
+
+            image_slug = Path(
+                state_ruler["image"]
+            ).stem
 
             if image_slug == slug:
                 era = state_slug

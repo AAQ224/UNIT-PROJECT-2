@@ -7,15 +7,15 @@
 {% block content %}
 
 <!-- STATE HERO -->
-<section class="era-hero"
-         style="--era-image: url('{% static state.image %}');">
-
+<section
+    class="era-hero"
+    style="--era-image: url('{% static state.image %}');"
+>
     <div class="container era-hero-content">
 
-        <a href="{% url 'home' %}"
-           class="era-back">
+        <a href="{% url 'home' %}" class="era-back">
             <i class="bi bi-arrow-right"></i>
-            العودة للرئيسية
+            العودة إلى الرئيسية
         </a>
 
         <span class="era-label">
@@ -36,7 +36,8 @@
     </div>
 </section>
 
-<!-- OVERVIEW -->
+
+<!-- HISTORICAL OVERVIEW -->
 <section id="era-overview" class="era-overview">
     <div class="container">
 
@@ -49,6 +50,7 @@
             {{ state.intro }}
         </p>
 
+        <!-- Historical Facts -->
         <div class="era-facts">
 
             <div class="era-fact">
@@ -74,12 +76,14 @@
     </div>
 </section>
 
-<!-- RULERS -->
-<section class="era-rulers">
+
+<!-- RULERS SECTION -->
+<section class="era-rulers" id="rulers">
     <div class="container">
 
         <div class="era-section-heading">
             <span>LEADERS THROUGH HISTORY</span>
+
             <h2>
                 {% if era == 'third' %}
                     ملوك المملكة العربية السعودية
@@ -87,7 +91,11 @@
                     حكام {{ state.title }}
                 {% endif %}
             </h2>
-            <p>تعرّف على القادة الذين ساهموا في تشكيل تاريخ الدولة.</p>
+
+            <p>
+                تعرّف على القادة الذين ساهموا
+                في تشكيل تاريخ الدولة.
+            </p>
         </div>
 
         <div class="rulers-grid">
@@ -101,6 +109,7 @@
             >
 
                 <div class="ruler-image">
+
                     <img
                         src="{% static ruler.image %}"
                         alt="{{ ruler.name }}"
@@ -110,9 +119,11 @@
                     <span class="ruler-number">
                         {{ forloop.counter|stringformat:"02d" }}
                     </span>
+
                 </div>
 
                 <div class="ruler-content">
+
                     <span class="ruler-period">
                         {{ ruler.period }}
                     </span>
@@ -120,9 +131,19 @@
                     <h3>{{ ruler.name }}</h3>
 
                     <p>{{ ruler.description }}</p>
+
+                    <span class="ruler-read-more">
+                        اقرأ السيرة
+                        <i class="bi bi-arrow-up-left"></i>
+                    </span>
+
                 </div>
 
             </a>
+
+            {% empty %}
+
+            <p>لا توجد بيانات حكام متاحة لهذه الدولة.</p>
 
             {% endfor %}
 
@@ -131,19 +152,79 @@
     </div>
 </section>
 
-<!-- NEXT STEP -->
-<section class="era-end">
+
+<!-- PREVIOUS / NEXT STATE -->
+<section class="states-navigation">
     <div class="container">
-        <h2>رحلتنا عبر التاريخ مستمرة</h2>
 
-        <p>
-            اكتشف بقية مراحل تاريخ المملكة العربية السعودية.
-        </p>
+        <div class="states-navigation-heading">
+            <span class="section-kicker">
+                CONTINUE EXPLORING
+            </span>
 
-        <a href="{% url 'home' %}" class="era-home-button">
-            العودة إلى الدول السعودية
-            <i class="bi bi-arrow-left"></i>
+            <h2>واصل رحلتك عبر التاريخ</h2>
+
+            <p>
+                انتقل بين مراحل الدولة السعودية
+                واكتشف تاريخ كل مرحلة.
+            </p>
+        </div>
+
+        <nav class="states-navigation-grid"
+             aria-label="التنقل بين الدول السعودية">
+
+            {% if previous_state %}
+
+            <a
+                href="{% url 'state_detail' previous_state.slug %}"
+                class="state-navigation-card"
+            >
+                <span class="state-navigation-label">
+                    <i class="bi bi-arrow-right"></i>
+                    الدولة السابقة
+                </span>
+
+                <strong>{{ previous_state.title }}</strong>
+            </a>
+
+            {% else %}
+
+            <div class="state-navigation-placeholder">
+                <span>أنت في بداية الرحلة التاريخية</span>
+            </div>
+
+            {% endif %}
+
+
+            {% if next_state %}
+
+            <a
+                href="{% url 'state_detail' next_state.slug %}"
+                class="state-navigation-card"
+            >
+                <span class="state-navigation-label">
+                    الدولة التالية
+                    <i class="bi bi-arrow-left"></i>
+                </span>
+
+                <strong>{{ next_state.title }}</strong>
+            </a>
+
+            {% else %}
+
+            <div class="state-navigation-placeholder">
+                <span>وصلت إلى أحدث مراحل الدولة السعودية</span>
+            </div>
+
+            {% endif %}
+
+        </nav>
+
+        <a href="{% url 'home' %}" class="states-home-link">
+            <i class="bi bi-grid-3x3-gap"></i>
+            عرض جميع الدول
         </a>
+
     </div>
 </section>
 

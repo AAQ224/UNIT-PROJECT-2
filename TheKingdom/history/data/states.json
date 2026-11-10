@@ -33,5 +33,99 @@
         "description": "آخر حكام الدولة السعودية الأولى."
       }
     ]
-  }
+  },
+  "second": {
+  "title": "الدولة السعودية الثانية",
+  "period": "1240–1309هـ / 1824–1891م",
+  "capital": "الرياض",
+  "founder": "الإمام تركي بن عبدالله",
+  "image": "history/images/eras/second-banner.jpg",
+  "intro": "تأسست الدولة السعودية الثانية عام 1240هـ / 1824م على يد الإمام تركي بن عبدالله، واتخذت الرياض عاصمة لها. واستمرت حتى عام 1309هـ / 1891م.",
+  "rulers": [
+    {
+      "name": "الإمام تركي بن عبدالله",
+      "period": "1824–1834م",
+      "image": "history/images/rulers/turki-bin-abdullah.jpg",
+      "description": "مؤسس الدولة السعودية الثانية."
+    },
+    {
+      "name": "الإمام فيصل بن تركي",
+      "period": "1834–1865م",
+      "image": "history/images/rulers/faisal-bin-turki.jpg",
+      "description": "تولى الحكم على فترتين وعمل على توطيد الدولة."
+    },
+    {
+      "name": "الإمام عبدالله بن فيصل",
+      "period": "1865–1878م",
+      "image": "history/images/rulers/abdullah-bin-faisal.jpg",
+      "description": "تولى الحكم خلال فترة شهدت صراعات داخلية."
+    },
+    {
+      "name": "الإمام سعود بن فيصل",
+      "period": "1871–1875م",
+      "image": "history/images/rulers/saud-bin-faisal.jpg",
+      "description": "أحد حكام الدولة خلال فترة التنافس على السلطة."
+    },
+    {
+      "name": "الإمام عبدالرحمن بن فيصل",
+      "period": "1889–1891م",
+      "image": "history/images/rulers/abdulrahman-bin-faisal.jpg",
+      "description": "آخر حكام الدولة السعودية الثانية."
+    }
+  ]
+},
+"third": {
+  "title": "الدولة السعودية الثالثة",
+  "period": "1902م – العصر الحديث",
+  "capital": "الرياض",
+  "founder": "الملك عبدالعزيز بن عبدالرحمن آل سعود",
+  "image": "history/images/eras/third-banner.jpg",
+  "intro": "بدأت الدولة السعودية الثالثة باسترداد الملك عبدالعزيز الرياض عام 1902م، واستمرت مسيرة توحيد البلاد حتى إعلان قيام المملكة العربية السعودية في 23 سبتمبر 1932م.",
+  "rulers": [
+    {
+      "name": "الملك عبدالعزيز بن عبدالرحمن",
+      "period": "1932–1953م",
+      "image": "history/images/rulers/king-abdulaziz.jpg",
+      "description": "مؤسس المملكة العربية السعودية الحديثة وموحّد البلاد."
+    },
+    {
+      "name": "الملك سعود بن عبدالعزيز",
+      "period": "1953–1964م",
+      "image": "history/images/rulers/king-saud.jpg",
+      "description": "شهد عهده توسعًا في الخدمات والتعليم."
+    },
+    {
+      "name": "الملك فيصل بن عبدالعزيز",
+      "period": "1964–1975م",
+      "image": "history/images/rulers/king-faisal.jpg",
+      "description": "قاد إصلاحات في التعليم والإدارة والاقتصاد."
+    },
+    {
+      "name": "الملك خالد بن عبدالعزيز",
+      "period": "1975–1982م",
+      "image": "history/images/rulers/king-khalid.jpg",
+      "description": "شهد عهده ازدهارًا اقتصاديًا وعمرانيًا."
+    },
+    {
+      "name": "الملك فهد بن عبدالعزيز",
+      "period": "1982–2005م",
+      "image": "history/images/rulers/king-fahd.jpg",
+      "description": "شهد عهده توسعات الحرمين وتطوير البنية الأساسية."
+    },
+    {
+      "name": "الملك عبدالله بن عبدالعزيز",
+      "period": "2005–2015م",
+      "image": "history/images/rulers/king-abdullah.jpg",
+      "description": "شهد عهده توسعًا في التعليم والمشروعات التنموية."
+    },
+    {
+      "name": "الملك سلمان بن عبدالعزيز",
+      "period": "منذ 2015م",
+      "image": "history/images/rulers/king-salman.jpg",
+      "description": "ارتبط عهده بإطلاق رؤية المملكة 2030."
+    }
+  ]
 }
+
+}
+
