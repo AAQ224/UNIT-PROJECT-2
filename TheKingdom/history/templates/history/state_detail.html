@@ -92,9 +92,13 @@
 
         <div class="rulers-grid">
 
-            {% for ruler in state.rulers %}
+            {% for ruler in rulers %}
 
-            <article class="ruler-card">
+            <a
+                href="{% url 'ruler_detail' ruler.slug %}"
+                class="ruler-card ruler-card-link"
+                aria-label="اقرأ سيرة {{ ruler.name }}"
+            >
 
                 <div class="ruler-image">
                     <img
@@ -118,7 +122,7 @@
                     <p>{{ ruler.description }}</p>
                 </div>
 
-            </article>
+            </a>
 
             {% endfor %}
 

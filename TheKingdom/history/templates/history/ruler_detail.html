@@ -1,0 +1,168 @@
+
+{% extends 'history/base.html' %}
+{% load static %}
+
+{% block title %}{{ ruler.name }} | TheKingdom{% endblock %}
+
+{% block content %}
+
+<!-- RULER HERO -->
+<section class="ruler-hero">
+    <div class="container">
+
+        <div class="ruler-hero-grid">
+
+            <!-- Text -->
+            <div class="ruler-hero-info">
+
+                <a
+                    href="{% url 'state_detail' era %}"
+                    class="ruler-back"
+                >
+                    <i class="bi bi-arrow-right"></i>
+                    العودة إلى {{ state_title }}
+                </a>
+
+                <span class="ruler-eyebrow">
+                    LEADERS THROUGH HISTORY
+                </span>
+
+                <h1>{{ ruler.name }}</h1>
+
+                <p class="ruler-subtitle">
+                    {{ ruler.subtitle }}
+                </p>
+
+                <a href="#biography" class="ruler-primary-btn">
+                    اكتشف السيرة
+                    <i class="bi bi-arrow-down"></i>
+                </a>
+
+            </div>
+
+            <!-- Portrait -->
+            <div class="ruler-hero-portrait">
+                <img
+                    src="{% static ruler.image %}"
+                    alt="{{ ruler.name }}"
+                >
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- BIOGRAPHY -->
+<section id="biography" class="ruler-biography">
+    <div class="container">
+
+        <div class="ruler-section-heading">
+            <span>HISTORICAL PROFILE</span>
+            <h2>نبذة تاريخية</h2>
+        </div>
+
+        <p class="ruler-overview-text">
+            {{ ruler.overview }}
+        </p>
+
+        <!-- Facts -->
+        {% if ruler.facts %}
+        <div class="ruler-facts-grid">
+
+            {% for label, value in ruler.facts.items %}
+            <div class="ruler-fact-card">
+
+                <span class="ruler-fact-label">
+                    {{ label }}
+                </span>
+
+                <strong>{{ value }}</strong>
+
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- MILESTONES -->
+{% if ruler.milestones %}
+<section class="ruler-milestones">
+    <div class="container">
+
+        <div class="ruler-section-heading">
+            <span>KEY MILESTONES</span>
+            <h2>محطات بارزة</h2>
+        </div>
+
+        <div class="ruler-timeline">
+
+            {% for milestone in ruler.milestones %}
+
+            <div class="ruler-timeline-item">
+
+                <div class="ruler-timeline-marker">
+                    <span>{{ forloop.counter }}</span>
+                </div>
+
+                <div class="ruler-timeline-content">
+                    <p>{{ milestone }}</p>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+{% endif %}
+
+<!-- LEGACY -->
+{% if ruler.legacy %}
+<section class="ruler-legacy">
+    <div class="container">
+
+        <div class="ruler-legacy-content">
+
+            <span class="ruler-eyebrow">
+                LEGACY & IMPACT
+            </span>
+
+            <h2>الإرث والتأثير</h2>
+
+            <p>{{ ruler.legacy }}</p>
+
+        </div>
+
+    </div>
+</section>
+{% endif %}
+
+<!-- BACK TO STATE -->
+<section class="ruler-bottom">
+    <div class="container">
+
+        <h2>استكشف المزيد من تاريخ المملكة</h2>
+
+        <p>
+            تعرّف على بقية الحكام
+            والأحداث التاريخية للدولة السعودية.
+        </p>
+
+        <a
+            href="{% url 'state_detail' era %}"
+            class="ruler-primary-btn"
+        >
+            العودة إلى {{ state_title }}
+            <i class="bi bi-arrow-left"></i>
+        </a>
+
+    </div>
+</section>
+
+{% endblock %}
