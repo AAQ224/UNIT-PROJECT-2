@@ -1,113 +1,180 @@
 
 {% extends 'history/base.html' %}
+{% load static %}
 
 {% block title %}الرئيسية | TheKingdom{% endblock %}
 
 {% block content %}
 
-<section class="home-hero">
-    <div class="container">
+<section class="states-showcase" aria-label="الدول السعودية عبر التاريخ">
 
-        <div class="home-hero-content">
+    <!-- FIRST SAUDI STATE -->
+    <article class="state-panel">
 
-            <span class="section-kicker">
-                <i class="bi bi-stars"></i>
-                KSA TIMELINE
-            </span>
+        <video
+            class="state-panel-video"
+            muted loop playsinline
+            preload="auto"
+            poster="{% static 'history/images/eras/first-banner.jpg' %}"
+            aria-hidden="true">
+            <source src="{% static 'history/videos/first-state.mp4' %}" type="video/mp4">
+        </video>
 
-            <h1>
-                الخط الزمني لتاريخ
-                <span>المملكة العربية السعودية</span>
-            </h1>
+        <div class="state-panel-content">
+            <span class="state-period">1727 — 1818م</span>
+            <h2>الدولة السعودية الأولى</h2>
 
-            <p class="hero-description">
-                رحلة تعليمية تتبع مسار الدول السعودية من الدرعية
-                وحتى رؤية 2030، مع نبذات عن الحُكّام
-                والمفاصل التاريخية.
+            <p class="state-description">
+                من الدرعية بدأت حكاية تأسيس الدولة السعودية
+                في عهد الإمام محمد بن سعود.
             </p>
 
-            <a href="#overview" class="primary-button">
-                اكتشف التاريخ
-                <i class="bi bi-arrow-down-left"></i>
+            <a href="{% url 'state_detail' 'first' %}" class="state-explore">
+                استكشف الدولة
+                <i class="bi bi-arrow-up-left"></i>
             </a>
-
         </div>
 
-        <div class="hero-decoration" aria-hidden="true">
-            <span>1727</span>
-            <span class="decoration-line"></span>
-            <span>2030</span>
+        <span class="state-index">01</span>
+    </article>
+
+    <!-- SECOND SAUDI STATE -->
+    <article class="state-panel">
+
+        <video
+            class="state-panel-video" 
+            muted
+            loop
+            playsinline
+            preload="auto"
+            poster="{% static 'history/images/eras/second-banner.jpg' %}"
+            aria-hidden="true">
+            <source src="{% static 'history/videos/second-state.mp4' %}" type="video/mp4">
+        </video>
+
+        <div class="state-panel-content">
+            <span class="state-period">1824 — 1891م</span>
+            <h2>الدولة السعودية الثانية</h2>
+
+            <p class="state-description">
+                أعاد الإمام تركي بن عبدالله تأسيس الدولة السعودية،
+                وأصبحت الرياض عاصمتها.
+            </p>
+
+            <a href="{% url 'state_detail' 'second' %}" class="state-explore">
+                استكشف الدولة
+                <i class="bi bi-arrow-up-left"></i>
+            </a>
         </div>
 
-    </div>
+        <span class="state-index">02</span>
+    </article>
+
+    <!-- THIRD SAUDI STATE -->
+    <article class="state-panel">
+
+        <video
+            class="state-panel-video"
+            muted loop playsinline
+            preload="auto"
+            poster="{% static 'history/images/eras/third-banner.jpg' %}"
+            aria-hidden="true">
+            <source src="{% static 'history/videos/third-state.mp4' %}" type="video/mp4">
+        </video>
+
+        <div class="state-panel-content">
+            <span class="state-period">1902م — اليوم</span>
+            <h2>الدولة السعودية الثالثة</h2>
+
+            <p class="state-description">
+                من استرداد الرياض على يد الملك عبدالعزيز،
+                إلى توحيد المملكة ونهضتها الحديثة.
+            </p>
+
+            <a href="{% url 'state_detail' 'third' %}" class="state-explore">
+                استكشف الدولة
+                <i class="bi bi-arrow-up-left"></i>
+            </a>
+        </div>
+
+        <span class="state-index">03</span>
+    </article>
+
 </section>
 
-<section id="overview" class="overview-section">
-    <div class="container">
 
-        <div class="section-heading">
-            <span class="section-kicker">ABOUT THE KINGDOM</span>
-            <h2>نظرة عامة</h2>
-        </div>
 
-        <p class="overview-text">
-            يمثل هذا الموقع رحلة تفاعلية عبر تاريخ المملكة العربية
-            السعودية، منذ تأسيس الدولة السعودية الأولى في الدرعية
-            وحتى مرحلة الازدهار الحديثة في ظل رؤية المملكة 2030.
-        </p>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-        <p class="overview-text">
-            يهدف المشروع إلى تقديم محتوى تعليمي مبسط بأسلوب بصري
-            حديث، يجمع بين التاريخ والمعلومة في تجربة تصفح سلسة
-            وغنية. من خلال الخط الزمني والوسائط المرئية، يمكن
-            للزائر استكشاف المراحل المفصلية التي شكّلت ملامح
-            الدولة، والتعرّف على إنجازات قادتها عبر العصور.
-        </p>
+    const panels = document.querySelectorAll(".state-panel");
+    const canHover = window.matchMedia("(hover: hover)").matches;
 
-    </div>
-</section>
+    panels.forEach(function (panel) {
 
-<section class="states-intro">
-    <div class="container">
+        const video = panel.querySelector(".state-panel-video");
+        if (!video) return;
 
-        <div class="section-heading">
-            <span class="section-kicker">OUR HISTORY</span>
-            <h2>الدول السعودية عبر التاريخ</h2>
-            <p>ثلاث مراحل تاريخية شكّلت مسيرة الدولة السعودية.</p>
-        </div>
+        video.pause();
 
-        <div class="timeline-preview">
+        // Load the beginning of the video.
+        video.preload = "auto";
+        video.load();
 
-            <div class="timeline-item">
-                <span class="timeline-year">1727 — 1818</span>
-                <h3>الدولة السعودية الأولى</h3>
-                <p>
-                    نشأت في الدرعية وتحوّلت إلى دولة واسعة النفوذ،
-                    ركّزت على الأمن والإدارة والقضاء.
-                </p>
-            </div>
+        // Show the first frame when the video is ready.
+        video.addEventListener("loadeddata", function () {
+            if (!panel.classList.contains("is-playing")) {
+                video.pause();
+                video.currentTime = 0;
+            }
+        }, { once: true });
 
-            <div class="timeline-item">
-                <span class="timeline-year">1824 — 1891</span>
-                <h3>الدولة السعودية الثانية</h3>
-                <p>
-                    عادت من الرياض بقيادة الإمام تركي بن عبدالله،
-                    مع تطوير للتوافق القبلي والإدارة.
-                </p>
-            </div>
+        function resetVideo() {
+            video.pause();
 
-            <div class="timeline-item">
-                <span class="timeline-year">1902 — اليوم</span>
-                <h3>الدولة السعودية الثالثة</h3>
-                <p>
-                    من استعادة الرياض إلى إعلان المملكة عام 1932،
-                    ثم النهضة الحديثة ورؤية 2030.
-                </p>
-            </div>
+            try {
+                video.currentTime = 0;
+            } catch (error) {
+                // Ignore seeking errors before metadata loads.
+            }
 
-        </div>
+            panel.classList.remove("is-playing");
+        }
 
-    </div>
-</section>
+        function playVideo() {
+            if (!canHover) return;
+
+            try {
+                video.currentTime = 0;
+            } catch (error) {}
+
+            panel.classList.add("is-playing");
+
+            const promise = video.play();
+
+            if (promise) {
+                promise.catch(function () {
+                    panel.classList.remove("is-playing");
+                });
+            }
+        }
+
+        panel.addEventListener("mouseenter", playVideo);
+        panel.addEventListener("mouseleave", resetVideo);
+
+        panel.addEventListener("focusin", playVideo);
+
+        panel.addEventListener("focusout", function (event) {
+            if (!panel.contains(event.relatedTarget)) {
+                resetVideo();
+            }
+        });
+
+    });
+
+});
+</script>
+
+
 
 {% endblock %}

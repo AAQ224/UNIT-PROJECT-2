@@ -1,6 +1,6 @@
 
 /* ========================================
-   THE KINGDOM - GLOBAL DESIGN SYSTEM
+   THE KINGDOM — GLOBAL DESIGN SYSTEM
 ======================================== */
 
 :root {
@@ -11,9 +11,16 @@
     --accent: #198754;
     --accent-dark: #11653d;
     --border: #e5e8df;
+
     --nav-bg: rgba(255, 255, 255, 0.92);
+    --navbar-height: 82px;
+
+    --nav-active-bg: rgba(255, 255, 255, 0.94);
+    --nav-active-text: #17251d;
+    --nav-active-border: rgba(0, 0, 0, 0.10);
 }
 
+/* Dark theme */
 html.dark {
     --bg: #0b1020;
     --surface: #121a2e;
@@ -22,7 +29,21 @@ html.dark {
     --accent: #39b87c;
     --accent-dark: #198754;
     --border: #24324d;
+
     --nav-bg: rgba(12, 18, 32, 0.94);
+    --nav-active-bg: rgba(10, 17, 28, 0.94);
+    --nav-active-text: #ffffff;
+    --nav-active-border: rgba(255, 255, 255, 0.12);
+}
+
+/* ========================================
+   GLOBAL
+======================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 html {
@@ -34,7 +55,10 @@ body {
     background: var(--bg);
     color: var(--fg);
     font-family: "Cairo", sans-serif;
-    transition: background 0.3s ease, color 0.3s ease;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 a {
@@ -46,21 +70,27 @@ button {
 }
 
 /* ========================================
-   NAVBAR
+   NAVBAR — DEFAULT FOR INNER PAGES
 ======================================== */
 
 .navbar {
-    min-height: 82px;
+    min-height: var(--navbar-height);
     background: var(--nav-bg);
     border-bottom: 1px solid var(--border);
+
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.025);
 }
+
+/* Brand */
 
 .navbar-brand {
     display: inline-flex;
     align-items: center;
     gap: 12px;
+
     color: var(--fg) !important;
     font-size: 23px;
     font-weight: 900;
@@ -74,20 +104,26 @@ button {
 .brand-icon {
     width: 44px;
     height: 44px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     color: #ffffff;
     background: var(--accent-dark);
+
     border-radius: 13px;
     font-size: 23px;
 }
+
+/* Navigation links */
 
 .navbar .nav-link {
     color: var(--fg);
     font-size: 14px;
     font-weight: 700;
     padding: 12px 18px !important;
+
     transition: color 0.2s ease;
 }
 
@@ -96,39 +132,65 @@ button {
     color: var(--accent);
 }
 
+/* Dropdown */
+
 .navbar .dropdown-menu {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 15px;
     padding: 10px;
+
     box-shadow: 0 15px 45px rgba(0, 0, 0, 0.09);
 }
 
-.dropdown-item-text {
-    color: var(--muted);
-    font-size: 13px;
-    padding: 10px 15px;
+.navbar .dropdown-item {
+    color: var(--fg);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 11px 16px;
+    border-radius: 8px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    background: var(--bg);
+    color: var(--accent);
+}
+
+/* Theme button */
 
 .theme-toggle {
     width: 44px;
     height: 44px;
+
     border-radius: 12px;
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--fg);
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     font-size: 19px;
     cursor: pointer;
-    transition: 0.2s ease;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .theme-toggle:hover {
     color: var(--accent);
     border-color: var(--accent);
 }
+
+/* Mobile toggler */
 
 .navbar-toggler {
     border-color: var(--border);
@@ -139,167 +201,375 @@ html.dark .navbar-toggler-icon {
 }
 
 /* ========================================
-   HOME HERO
+   HOME NAVBAR — TRANSPARENT / HOVER / SCROLL
 ======================================== */
 
-.home-hero {
-    min-height: 680px;
-    padding: 170px 0 100px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 80% 30%,
-            rgba(25, 135, 84, 0.12), transparent 42%),
-        var(--bg);
+/* Transparent on homepage */
+
+.navbar.navbar-home {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        backdrop-filter 0.35s ease;
 }
 
-.home-hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 850px;
+/* White text when transparent */
+
+.navbar-home .navbar-brand,
+.navbar-home .navbar-brand span:not(.brand-highlight),
+.navbar-home .nav-link {
+    color: #ffffff !important;
 }
+
+.navbar-home .brand-highlight {
+    color: #48d597;
+}
+
+.navbar-home .theme-toggle {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Activate navbar on hover, focus, scroll or mobile menu */
+
+.navbar.navbar-home:is(
+    :hover,
+    :focus-within,
+    .navbar-scrolled,
+    .navbar-menu-open
+) {
+    background: var(--nav-active-bg);
+    border-bottom-color: var(--nav-active-border);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.10);
+}
+
+/* Active navbar text follows theme */
+
+.navbar-home:is(
+    :hover,
+    :focus-within,
+    .navbar-scrolled,
+    .navbar-menu-open
+) :is(
+    .navbar-brand,
+    .navbar-brand span:not(.brand-highlight),
+    .nav-link
+) {
+    color: var(--nav-active-text) !important;
+}
+
+/* Green accent */
+
+.navbar-home:is(
+    :hover,
+    :focus-within,
+    .navbar-scrolled,
+    .navbar-menu-open
+) :is(
+    .brand-highlight,
+    .nav-link.active,
+    .nav-link:hover
+) {
+    color: var(--accent) !important;
+}
+
+/* Theme button when navbar becomes active */
+
+.navbar-home:is(
+    :hover,
+    :focus-within,
+    .navbar-scrolled,
+    .navbar-menu-open
+) .theme-toggle {
+    background: var(--surface);
+    border-color: var(--border);
+    color: var(--fg);
+}
+
+/* ========================================
+   SHARED COMPONENTS
+======================================== */
 
 .section-kicker {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+
     color: var(--accent);
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 2px;
 }
 
-.home-hero h1 {
-    margin: 25px 0;
-    font-size: clamp(36px, 5vw, 70px);
-    line-height: 1.5;
-    font-weight: 900;
-}
+/* ========================================
+   SAUDI STATES — CINEMATIC HOMEPAGE
+======================================== */
 
-.home-hero h1 span {
-    display: block;
-    color: var(--accent);
-}
+/* Three panels with videos behind navbar */
 
-.hero-description {
-    max-width: 650px;
-    color: var(--muted);
-    font-size: 17px;
-    line-height: 2.1;
-    margin-bottom: 35px;
-}
-
-.primary-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--accent-dark);
-    color: #ffffff;
-    border-radius: 12px;
-    padding: 15px 26px;
-    font-weight: 800;
-    transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.primary-button:hover {
-    background: var(--accent);
-    color: #ffffff;
-    transform: translateY(-3px);
-}
-
-.hero-decoration {
-    position: absolute;
-    left: 7%;
-    bottom: 60px;
+.states-showcase {
     display: flex;
-    gap: 12px;
-    align-items: center;
-    direction: ltr;
-    color: var(--accent);
-    font-size: 18px;
-    font-weight: 800;
-    opacity: 0.65;
+    flex-direction: row;
+    direction: rtl;
+
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 500px;
+
+    padding-top: 0;
+    margin: 0;
+
+    overflow: hidden;
+    background: #0b1020;
 }
 
-.decoration-line {
+/* Individual panel */
+
+.state-panel {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 100%;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    background: #17221d;
+    border: 0;
+
+    transition:
+        flex-grow 0.65s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* Dividers */
+
+.state-panel + .state-panel {
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* Video background */
+
+.state-panel-video {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
     display: block;
-    width: 85px;
-    height: 2px;
-    background: var(--accent);
+
+    z-index: -2;
+    pointer-events: none;
+
+    filter: brightness(0.85);
+
+    transition: filter 0.45s ease;
+}
+
+/* Dark overlay when inactive */
+
+.state-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(0, 0, 0, 0.68);
+
+    transition: background-color 0.45s ease;
+}
+
+/* Expand selected panel on hover */
+
+@media (hover: hover) and (min-width: 769px) {
+
+    .states-showcase:hover .state-panel {
+        flex-grow: 1;
+    }
+
+    .states-showcase .state-panel:hover,
+    .states-showcase .state-panel:focus-within {
+        flex-grow: 2.2;
+    }
+
+}
+
+/* Video is playing */
+
+.state-panel.is-playing::before {
+    background: rgba(0, 0, 0, 0.22);
+}
+
+.state-panel.is-playing .state-panel-video {
+    filter: brightness(1);
+}
+
+/* Keep other panels dark */
+
+@media (hover: hover) and (min-width: 769px) {
+
+    .states-showcase:has(.state-panel.is-playing)
+    .state-panel:not(.is-playing)::before {
+        background: rgba(0, 0, 0, 0.75);
+    }
+
 }
 
 /* ========================================
-   CONTENT SECTIONS
+   STATE PANEL CONTENT
 ======================================== */
 
-.overview-section,
-.states-intro {
-    padding: 95px 0;
+.state-panel-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    padding: calc(var(--navbar-height) + 28px) 20px 28px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
 }
 
-.overview-section {
-    background: var(--surface);
+.state-period {
+    display: block;
+    margin-bottom: 18px;
+
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.section-heading {
-    margin-bottom: 35px;
-}
+.state-panel h2 {
+    margin: 0;
+    color: #ffffff !important;
 
-.section-heading h2 {
-    margin: 15px 0;
-    font-size: clamp(27px, 3vw, 43px);
+    font-size: clamp(23px, 2.6vw, 43px);
     font-weight: 900;
+    line-height: 1.5;
+
+    text-shadow: 0 3px 18px rgba(0, 0, 0, 0.6);
 }
 
-.section-heading p,
-.overview-text {
-    color: var(--muted);
-    line-height: 2.2;
-    font-size: 16px;
+/* Description revealed on hover */
+
+.state-description {
+    max-width: 370px;
+    max-height: 0;
+
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 2;
+
+    transition:
+        max-height 0.35s ease,
+        opacity 0.35s ease,
+        margin 0.35s ease;
 }
 
-.overview-text {
-    max-width: 1000px;
+.state-panel:hover .state-description,
+.state-panel:focus-within .state-description {
+    max-height: 180px;
+    margin-top: 15px;
+    opacity: 1;
 }
 
-.timeline-preview {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 25px;
+/* Explore button */
+
+.state-explore {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 25px;
+    padding: 12px 22px;
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: transparent;
+    color: #ffffff !important;
+
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
 }
 
-.timeline-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-top: 4px solid var(--accent);
-    border-radius: 15px;
-    padding: 30px;
-    transition: transform 0.3s ease;
+.state-explore:hover,
+.state-explore:focus-visible {
+    background: #ffffff;
+    color: #153d2a !important;
 }
 
-.timeline-item:hover {
-    transform: translateY(-5px);
-}
+/* Panel index */
 
-.timeline-year {
-    color: var(--accent);
+.state-index {
+    position: absolute;
+    z-index: 2;
+    bottom: 24px;
+    left: 28px;
+
+    color: rgba(255, 255, 255, 0.75);
     font-size: 13px;
     font-weight: 800;
 }
 
-.timeline-item h3 {
-    margin: 16px 0;
-    font-size: 22px;
-    font-weight: 800;
+/* ========================================
+   STATE DETAIL PAGE
+======================================== */
+
+.state-detail {
+    min-height: 80vh;
+    padding: 160px 0 90px;
 }
 
-.timeline-item p {
+.state-detail h1 {
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.state-detail p {
     color: var(--muted);
     line-height: 2;
-    margin-bottom: 0;
-    font-size: 14px;
+}
+
+.state-detail-image {
+    display: block;
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 18px;
+    margin-top: 30px;
 }
 
 /* ========================================
@@ -331,6 +601,7 @@ html.dark .navbar-toggler-icon {
 .footer-description {
     margin: 12px 0 0;
     max-width: 420px;
+
     color: var(--muted);
     line-height: 2;
     font-size: 13px;
@@ -340,15 +611,17 @@ html.dark .navbar-toggler-icon {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
     color: var(--muted);
     font-size: 12px;
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE — TABLET / MOBILE
 ======================================== */
 
 @media (max-width: 991px) {
+
     .navbar-collapse {
         padding: 20px 0;
     }
@@ -357,46 +630,138 @@ html.dark .navbar-toggler-icon {
         padding: 12px 0 !important;
     }
 
-    .timeline-preview {
-        grid-template-columns: 1fr;
+    /* Mobile menu background */
+    .navbar-home .navbar-collapse {
+        margin-top: 12px;
+        padding: 18px;
+
+        border-radius: 16px;
+        background: var(--nav-active-bg);
+
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .navbar-home .navbar-collapse .nav-link {
+        color: var(--nav-active-text) !important;
+    }
+
+    .navbar-home .navbar-collapse .nav-link.active {
+        color: var(--accent) !important;
+    }
+
+    /* Mobile menu button */
+    .navbar-home .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .navbar-home .navbar-toggler-icon {
+        filter: invert(1);
+    }
+
+    /* Active navbar mobile toggle */
+    .navbar-home:is(
+        :hover,
+        :focus-within,
+        .navbar-scrolled,
+        .navbar-menu-open
+    ) .navbar-toggler {
+        border-color: var(--nav-active-border);
+    }
+
+    .navbar-home:is(
+        :hover,
+        :focus-within,
+        .navbar-scrolled,
+        .navbar-menu-open
+    ) .navbar-toggler-icon {
+        filter: none;
+    }
+
+    html.dark .navbar-home:is(
+        :hover,
+        :focus-within,
+        .navbar-scrolled,
+        .navbar-menu-open
+    ) .navbar-toggler-icon {
+        filter: invert(1);
     }
 }
 
 @media (max-width: 768px) {
-    .home-hero {
-        min-height: 580px;
-        padding: 150px 0 75px;
+
+    /* Stack panels vertically */
+    .states-showcase {
+        height: auto;
+        min-height: 0;
+        padding-top: 0;
+        flex-direction: column;
     }
 
-    .home-hero h1 {
-        font-size: 35px;
+    .state-panel {
+        width: 100%;
+        min-height: 380px;
+        flex: none;
     }
 
-    .hero-description {
-        font-size: 15px;
+    /* Leave space for fixed navbar */
+    .state-panel:first-child {
+        padding-top: var(--navbar-height);
+        min-height: calc(380px + var(--navbar-height));
     }
 
-    .hero-decoration {
-        display: none;
+    .state-panel + .state-panel {
+        border-right: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
     }
 
-    .overview-section,
-    .states-intro {
-        padding: 65px 0;
+    .state-panel-content {
+        padding: 28px 20px;
     }
 
+    .state-panel h2 {
+        font-size: 29px;
+    }
+
+    .state-description {
+        max-height: none;
+        margin-top: 14px;
+        opacity: 1;
+    }
+
+    /* Footer */
     .footer-content {
         flex-direction: column;
         align-items: flex-start;
     }
 }
 
+/* Touch devices */
+@media (hover: none) {
+
+    .state-panel::before {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY
+======================================== */
+
 @media (prefers-reduced-motion: reduce) {
+
     html {
         scroll-behavior: auto;
     }
 
-    *, *::before, *::after {
-        transition-duration: 0.01ms !important;
+    .state-panel,
+    .state-description,
+    .state-panel::before,
+    .state-panel-video {
+        transition: none;
+    }
+
+    .state-panel-video {
+        display: none;
     }
 }
