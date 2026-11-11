@@ -72,9 +72,15 @@ def state_detail(request, era):
         for ruler in state.get("rulers", [])
     ]
 
+    template_name = {
+        "first": "history/states/first.html",
+        "second": "history/state_detail.html",
+        "third": "history/state_detail.html",
+         }.get(era, "history/state_detail.html")
+    
     return render(
         request,
-        "history/state_detail.html",
+        template_name,
         {
             "state": state,
             "era": era,
