@@ -5,44 +5,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}TheKingdom{% endblock %}</title>
 
-    <!-- Arabic Font -->
+    <title>{% block title %}المملكة{% endblock %}</title>
+
+    <meta name="theme-color" content="#f8f5ed" id="browserThemeColor">
+
+    <!-- الخط العربي -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
     <!-- Bootstrap RTL -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+        rel="stylesheet"
+    >
 
     <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+        rel="stylesheet"
+    >
 
-    <!-- Project CSS -->
-    <link rel="stylesheet" href="{% static 'history/css/styles.css' %}">
+    <!-- التنسيقات العامة -->
+    <link
+        rel="stylesheet"
+        href="{% static 'history/css/styles.css' %}"
+    >
 
+    <!-- تطبيق الوضع المحفوظ قبل ظهور الصفحة -->
     <script>
-        // Restore saved theme before rendering the page.
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-        }
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem("theme");
+
+                if (savedTheme === "dark") {
+                    document.documentElement.classList.add("dark");
+                }
+            } catch (error) {
+                // يستمر الموقع بالعمل حتى لو تعذر التخزين.
+            }
+        })();
     </script>
 
+    <!-- تنسيقات كل صفحة -->
     {% block extra_head %}{% endblock %}
+
+    <!-- التنسيقات الموحدة للوضع الليلي -->
+    <link
+        rel="stylesheet"
+        href="{% static 'history/css/dark-theme.css' %}"
+    >
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- شريط التنقل -->
     <nav
         class="navbar navbar-expand-lg fixed-top {% if request.resolver_match.url_name == 'home' %}navbar-home{% endif %}"
         id="mainNavbar"
         aria-label="التنقل الرئيسي"
     >
+
         <div class="container">
 
-            <!-- Brand -->
             <a class="navbar-brand" href="{% url 'home' %}">
+
                 <span class="brand-icon" aria-hidden="true">
                     <i class="bi bi-clock-history"></i>
                 </span>
@@ -50,9 +82,9 @@
                 <span>
                     الـ<span class="brand-highlight">ـمملكة</span>
                 </span>
+
             </a>
 
-            <!-- Mobile Menu Button -->
             <button
                 class="navbar-toggler"
                 type="button"
@@ -65,13 +97,12 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarMenu">
 
                 <ul class="navbar-nav mx-auto align-items-lg-center">
 
-                    <!-- Home -->
                     <li class="nav-item">
+
                         <a
                             class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
                             href="{% url 'home' %}"
@@ -79,10 +110,11 @@
                         >
                             الرئيسية
                         </a>
+
                     </li>
 
-                    <!-- Saudi States Dropdown -->
                     <li class="nav-item dropdown">
+
                         <button
                             class="nav-link dropdown-toggle {% if request.resolver_match.url_name == 'state_detail' %}active{% endif %}"
                             type="button"
@@ -93,6 +125,7 @@
                         </button>
 
                         <ul class="dropdown-menu">
+
                             <li>
                                 <a
                                     class="dropdown-item"
@@ -119,19 +152,21 @@
                                     الدولة السعودية الثالثة
                                 </a>
                             </li>
+
                         </ul>
+
                     </li>
 
                 </ul>
 
-                <!-- Theme Toggle -->
+                <!-- زر الوضع الليلي -->
                 <button
                     id="modeToggle"
                     class="theme-toggle"
                     type="button"
-                    aria-label="تبديل المظهر"
+                    aria-label="تفعيل الوضع الليلي"
                     aria-pressed="false"
-                    title="الوضع الفاتح والداكن"
+                    title="تبديل المظهر"
                 >
                     <i
                         id="modeIcon"
@@ -142,21 +177,23 @@
 
             </div>
         </div>
+
     </nav>
 
-    <!-- PAGE CONTENT -->
-    <main>
-        {% block content %}
-        {% endblock %}
+    <!-- المحتوى -->
+    <main id="mainContent">
+        {% block content %}{% endblock %}
     </main>
 
-    <!-- FOOTER -->
+    <!-- الفوتر -->
     <footer class="site-footer">
+
         <div class="container">
 
             <div class="footer-content">
 
                 <div>
+
                     <strong class="footer-brand">
                         الـ<span>ـمملكة</span>
                     </strong>
@@ -165,77 +202,117 @@
                         رحلة عبر تاريخ المملكة العربية السعودية،
                         من تأسيس الدولة السعودية الأولى إلى عهدها الحديث.
                     </p>
+
                 </div>
 
                 <div class="footer-info">
+
                     <span>
                         مشروع تعليمي عن تاريخ المملكة العربية السعودية
                     </span>
 
                     <span>
-                        © 2026 TheKingdom
+                        © ٢٠٢٦ المملكة
                     </span>
+
                 </div>
 
             </div>
 
         </div>
+
     </footer>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    ></script>
 
-    <!-- Theme & Navbar Interaction -->
+    <!-- إدارة الوضع الليلي والناف بار -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener("DOMContentLoaded", function () {
 
-            const themeButton = document.getElementById('modeToggle');
-            const themeIcon = document.getElementById('modeIcon');
-            const navbar = document.getElementById('mainNavbar');
-            const navbarMenu = document.getElementById('navbarMenu');
+            const html = document.documentElement;
 
-            // Update theme icon.
-            function updateThemeIcon() {
-                const isDark = document.documentElement.classList.contains('dark');
+            const themeButton = document.getElementById("modeToggle");
+            const themeIcon = document.getElementById("modeIcon");
+            const browserThemeColor = document.getElementById(
+                "browserThemeColor"
+            );
 
-                themeIcon.className = isDark
-                    ? 'bi bi-sun-fill'
-                    : 'bi bi-moon-stars';
+            const navbar = document.getElementById("mainNavbar");
+            const navbarMenu = document.getElementById("navbarMenu");
 
-                themeButton.setAttribute(
-                    'aria-pressed',
-                    String(isDark)
-                );
+            function updateThemeInterface() {
 
-                themeButton.setAttribute(
-                    'aria-label',
-                    isDark
-                        ? 'تفعيل الوضع الفاتح'
-                        : 'تفعيل الوضع الداكن'
-                );
+                const isDark = html.classList.contains("dark");
+
+                if (themeIcon) {
+                    themeIcon.className = isDark
+                        ? "bi bi-sun-fill"
+                        : "bi bi-moon-stars";
+                }
+
+                if (themeButton) {
+                    themeButton.setAttribute(
+                        "aria-pressed",
+                        String(isDark)
+                    );
+
+                    themeButton.setAttribute(
+                        "aria-label",
+                        isDark
+                            ? "تفعيل الوضع الفاتح"
+                            : "تفعيل الوضع الليلي"
+                    );
+
+                    themeButton.title = isDark
+                        ? "الانتقال إلى الوضع الفاتح"
+                        : "الانتقال إلى الوضع الليلي";
+                }
+
+                if (browserThemeColor) {
+                    browserThemeColor.content = isDark
+                        ? "#242d29"
+                        : "#f8f5ed";
+                }
             }
 
-            updateThemeIcon();
+            updateThemeInterface();
 
-            // Toggle theme and save preference.
-            themeButton.addEventListener('click', function () {
+            if (themeButton) {
 
-                const isDark = document.documentElement.classList.toggle('dark');
+                themeButton.addEventListener("click", function () {
 
-                localStorage.setItem(
-                    'theme',
-                    isDark ? 'dark' : 'light'
-                );
+                    const isDark = html.classList.toggle("dark");
 
-                updateThemeIcon();
-            });
+                    try {
+                        localStorage.setItem(
+                            "theme",
+                            isDark ? "dark" : "light"
+                        );
+                    } catch (error) {
+                        // يبقى التبديل فعالًا للجلسة الحالية.
+                    }
 
-            // Special navbar behavior on homepage.
-            if (navbar.classList.contains('navbar-home')) {
+                    updateThemeInterface();
+
+                    // تنبيه المكونات التي تحتاج تحديث رسمها.
+                    window.dispatchEvent(
+                        new CustomEvent("kingdom:themechange", {
+                            detail: { theme: isDark ? "dark" : "light" }
+                        })
+                    );
+                });
+            }
+
+            // سلوك الناف بار في الصفحة الرئيسية.
+            if (navbar && navbar.classList.contains("navbar-home")) {
 
                 function updateNavbar() {
+
                     navbar.classList.toggle(
-                        'navbar-scrolled',
+                        "navbar-scrolled",
                         window.scrollY > 40
                     );
                 }
@@ -243,28 +320,26 @@
                 updateNavbar();
 
                 window.addEventListener(
-                    'scroll',
+                    "scroll",
                     updateNavbar,
                     { passive: true }
                 );
 
-                // Keep mobile navbar readable when menu opens.
                 if (navbarMenu) {
 
                     navbarMenu.addEventListener(
-                        'shown.bs.collapse',
+                        "shown.bs.collapse",
                         function () {
-                            navbar.classList.add('navbar-menu-open');
+                            navbar.classList.add("navbar-menu-open");
                         }
                     );
 
                     navbarMenu.addEventListener(
-                        'hidden.bs.collapse',
+                        "hidden.bs.collapse",
                         function () {
-                            navbar.classList.remove('navbar-menu-open');
+                            navbar.classList.remove("navbar-menu-open");
                         }
                     );
-
                 }
             }
 

@@ -74,9 +74,9 @@ def state_detail(request, era):
 
     template_name = {
         "first": "history/states/first.html",
-        "second": "history/state_detail.html",
+        "second": "history/states/second.html",
         "third": "history/state_detail.html",
-         }.get(era, "history/state_detail.html")
+    }.get(era, "history/state_detail.html")
     
     return render(
         request,
