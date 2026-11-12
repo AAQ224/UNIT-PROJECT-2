@@ -27,15 +27,6 @@
              style="background-image: url('{% static 'history/images/first-state/diriyah-hero.webp' %}');"
              aria-hidden="true"></div>
 
-        <video class="origins-hero-video"
-               id="originsHeroVideo"
-               autoplay muted loop playsinline
-               preload="metadata"
-               poster="{% static 'history/images/first-state/diriyah-hero.webp' %}"
-               aria-hidden="true">
-            <source src="{% static 'history/videos/first-state/diriyah-intro.mp4' %}"
-                    type="video/mp4">
-        </video>
 
         <div class="origins-hero-shade"></div>
 
@@ -574,7 +565,16 @@
          الفصل الأخير — الإرث
     ======================================= -->
     <section class="origins-legacy origins-section"
-             id="origins-legacy">
+             id="origins-legacy"
+             style="background-image:
+                linear-gradient(
+                    rgba(12, 18, 14, 0.65),
+                    rgba(12, 18, 14, 0.85)
+                ),
+                url('{% static 'history/images/first-state/end-of-first-state.webp' %}');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;">
 
         <div class="container origins-legacy-inner">
 

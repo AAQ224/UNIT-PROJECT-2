@@ -1698,3 +1698,1089 @@ html.dark .navbar-toggler-icon {
         transition: none;
     }
 }
+
+/* =====================================================
+   THE KINGDOM — HOME, BRAND & FOOTER REFRESH
+===================================================== */
+
+/* ==========================================
+   ١. هوية الشعار الجديدة
+========================================== */
+
+.kingdom-brand,
+.navbar-brand.kingdom-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.kingdom-brand-mark {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(194, 155, 89, .42);
+    border-radius: 12px;
+
+    color: #e0bd80;
+    background: #24382e;
+}
+
+.kingdom-brand-mark svg {
+    width: 37px;
+    height: 37px;
+    display: block;
+}
+
+.kingdom-brand-type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    line-height: 1.2;
+}
+
+.kingdom-brand-type strong {
+    color: var(--fg);
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: -.5px;
+}
+
+.kingdom-brand-type small {
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.navbar-home:not(.navbar-scrolled):not(.navbar-menu-open):not(:hover):not(:focus-within)
+.kingdom-brand-type strong {
+    color: #fff;
+}
+
+.navbar-home:not(.navbar-scrolled):not(.navbar-menu-open):not(:hover):not(:focus-within)
+.kingdom-brand-type small {
+    color: #f0dfbd;
+}
+
+html.dark .navbar .kingdom-brand-type strong {
+    color: #f0e9dc;
+}
+
+html.dark .navbar .kingdom-brand-type small {
+    color: #d0be9c;
+}
+
+.navbar .kingdom-brand-mark {
+    color: #f0d5a0;
+}
+
+
+/* ==========================================
+   ٢. افتتاحية الرئيسية
+========================================== */
+
+.kingdom-home {
+    --home-gold: #d9b579;
+    --home-forest: #17372c;
+    color: var(--fg);
+}
+
+.home-hero {
+    min-height: 90svh;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    isolation: isolate;
+    overflow: hidden;
+
+    background: #132a20;
+    color: #fff;
+}
+
+.home-hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+
+    background-size: cover;
+    background-position: center 48%;
+    transform: scale(1.025);
+}
+
+.home-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            270deg,
+            rgba(12, 32, 22, .96) 0%,
+            rgba(12, 32, 22, .86) 38%,
+            rgba(12, 32, 22, .47) 76%,
+            rgba(12, 32, 22, .43) 100%
+        ),
+        linear-gradient(
+            0deg,
+            rgba(12, 25, 19, .65),
+            transparent 35%
+        );
+}
+
+.home-hero-inner {
+    padding-top: calc(var(--navbar-height) + 88px);
+    padding-bottom: 120px;
+    position: relative;
+}
+
+.home-hero-content {
+    max-width: 760px;
+}
+
+.home-eyebrow,
+.home-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    color: #d5ad70;
+}
+
+.home-eyebrow {
+    padding: 10px 16px;
+    border: 1px solid rgba(224, 188, 124, .33);
+    background: rgba(9, 29, 20, .38);
+}
+
+.home-hero h1 {
+    font-size: clamp(49px, 7.6vw, 105px);
+    line-height: 1.35;
+    font-weight: 900;
+
+    margin: 26px 0;
+    color: #fffaf0;
+}
+
+.home-hero h1 span {
+    display: block;
+    color: #e1b97a;
+    font-size: clamp(29px, 4.4vw, 64px);
+}
+
+.home-hero-content > p {
+    max-width: 655px;
+
+    font-size: clamp(14px, 1.25vw, 18px);
+    line-height: 2.25;
+
+    color: #e2e7da;
+    margin: 0 0 30px;
+}
+
+.home-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.home-primary-button,
+.home-secondary-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    padding: 14px 24px;
+    min-height: 50px;
+
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+
+    transition:
+        background .25s,
+        transform .25s,
+        color .25s;
+}
+
+.home-primary-button {
+    background: #dab77a;
+    color: #1c2b23 !important;
+}
+
+.home-primary-button:hover {
+    background: #f0d29d;
+    transform: translateY(-3px);
+}
+
+.home-secondary-button {
+    background: transparent;
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, .55);
+}
+
+.home-secondary-button:hover {
+    background: rgba(255, 255, 255, .12);
+}
+
+.home-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+
+    margin-top: 72px;
+    border-top: 1px solid rgba(241, 223, 187, .22);
+    padding-top: 24px;
+}
+
+.home-hero-stats > div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    min-width: 165px;
+    padding-left: 34px;
+    margin-left: 34px;
+
+    border-left: 1px solid rgba(241, 223, 187, .23);
+}
+
+.home-hero-stats > div:last-child {
+    border-left: 0;
+}
+
+.home-hero-stats strong {
+    color: #e4c18a;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.home-hero-stats span {
+    color: #d0d9ce;
+    font-size: 11px;
+}
+
+.home-hero-scroll {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #f4e8d3 !important;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 11px;
+    text-decoration: none;
+}
+
+
+/* ==========================================
+   ٣. مقدمة الدول الثلاث
+========================================== */
+
+.home-journey-intro {
+    padding: 100px 20px 65px;
+    background: var(--bg);
+    text-align: center;
+    scroll-margin-top: 85px;
+}
+
+.home-journey-intro h2,
+.home-discover h2,
+.home-ending h2 {
+    font-weight: 900;
+    font-size: clamp(30px, 4.6vw, 57px);
+    line-height: 1.4;
+
+    margin: 15px 0;
+    color: var(--fg);
+}
+
+.home-journey-intro h2 em,
+.home-discover h2 em {
+    color: #ac864d;
+    font-style: normal;
+}
+
+.home-journey-intro p {
+    max-width: 670px;
+    margin: 0 auto;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 2.15;
+}
+
+
+/* ==========================================
+   ٤. تحسين بطاقات الفيديو الحالية
+========================================== */
+
+.kingdom-home .states-showcase {
+    height: min(78svh, 800px);
+    min-height: 540px;
+    background: #1a2a23;
+}
+
+.kingdom-home .state-panel-content {
+    padding-top: 35px;
+}
+
+.kingdom-home .state-panel {
+    background-position: center;
+    background-size: cover;
+}
+
+.kingdom-home .state-panel:nth-child(1) {
+    background-image: url('/static/history/images/eras/first-banner.jpg');
+}
+
+.kingdom-home .state-panel:nth-child(2) {
+    background-image: url('/static/history/images/eras/second-banner.jpg');
+}
+
+.kingdom-home .state-panel:nth-child(3) {
+    background-image: url('/static/history/images/eras/third-banner.jpg');
+}
+
+.kingdom-home .state-panel::before {
+    background: rgba(5, 21, 13, .67);
+}
+
+.kingdom-home .state-panel.is-playing::before {
+    background: rgba(5, 21, 13, .32);
+}
+
+
+/* ==========================================
+   ٥. قسم اكتشف المشروع
+========================================== */
+
+.home-discover {
+    padding: 115px 0 125px;
+    background: var(--bg);
+    scroll-margin-top: 90px;
+}
+
+.home-discover-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 48px;
+}
+
+.home-discover-heading h2 {
+    max-width: 680px;
+}
+
+.home-discover-heading > p {
+    max-width: 370px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 2.1;
+    margin-bottom: 12px;
+}
+
+.home-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.home-feature-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 38px;
+    min-height: 330px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--fg) !important;
+    text-decoration: none;
+
+    transition:
+        border-color .25s,
+        transform .25s,
+        box-shadow .25s;
+}
+
+.home-feature-card:hover {
+    border-color: #b8945a;
+    transform: translateY(-6px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .07);
+}
+
+.home-feature-icon {
+    width: 58px;
+    height: 58px;
+
+    display: grid;
+    place-items: center;
+
+    background: #243c30;
+    color: #e6c486;
+
+    font-size: 24px;
+    margin-bottom: 32px;
+}
+
+.home-feature-number {
+    position: absolute;
+    left: 29px;
+    top: 25px;
+
+    color: #ab936f;
+    font-weight: 800;
+    font-size: 12px;
+}
+
+.home-feature-card h3 {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 13px;
+}
+
+.home-feature-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 30px;
+}
+
+.home-feature-link {
+    margin-top: auto;
+    color: #a57b42;
+
+    display: inline-flex;
+    gap: 12px;
+    align-items: center;
+
+    font-weight: 800;
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   ٦. ختام الصفحة الرئيسية
+========================================== */
+
+.home-ending {
+    position: relative;
+    text-align: center;
+    padding: 100px 15px 115px;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #31523c 0%,
+            #1c3227 55%,
+            #15271e 100%
+        );
+
+    color: #f4eee3;
+}
+
+.home-ending .container {
+    max-width: 850px;
+}
+
+.home-ending h2 {
+    color: #fff8ed;
+}
+
+.home-ending h2 em {
+    color: #e2bf83;
+    font-style: normal;
+    display: block;
+}
+
+.home-ending p {
+    color: #d1dbcf;
+    font-size: 14px;
+    line-height: 2.1;
+
+    max-width: 570px;
+    margin: 18px auto 32px;
+}
+
+
+/* ==========================================
+   ٧. الفوتر الاحترافي
+========================================== */
+
+.site-footer.kingdom-footer {
+    padding: 0;
+    background: #f3f1e9;
+    color: #25342c;
+    border-top: 1px solid #deded4;
+}
+
+.kingdom-footer-top {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr 1fr 1.15fr;
+    gap: clamp(25px, 3.5vw, 65px);
+    padding: 74px 0 61px;
+}
+
+.kingdom-footer .kingdom-brand-type strong {
+    color: #26382d;
+}
+
+.kingdom-footer .kingdom-brand-type small {
+    color: #967c56;
+}
+
+.kingdom-footer-about > p {
+    color: #657169;
+    font-size: 12px;
+    line-height: 2.1;
+
+    max-width: 340px;
+    margin: 21px 0;
+}
+
+.kingdom-footer-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #9a7843;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.kingdom-footer-column h3 {
+    font-size: 14px;
+    font-weight: 900;
+    color: #26382d;
+    margin: 7px 0 22px;
+}
+
+.kingdom-footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    gap: 13px;
+}
+
+.kingdom-footer-column ul a,
+.kingdom-footer-references > a {
+    color: #637167;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color .2s;
+}
+
+.kingdom-footer-column ul a:hover,
+.kingdom-footer-references > a:hover {
+    color: #a57e49;
+}
+
+.kingdom-footer-references p {
+    color: #657169;
+    font-size: 12px;
+    line-height: 2;
+    margin: 0 0 15px;
+}
+
+.kingdom-footer-references > a {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-top: 12px;
+    max-width: 240px;
+}
+
+.kingdom-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px 25px;
+
+    padding: 22px 0;
+    border-top: 1px solid #d9dcd2;
+
+    color: #69766e;
+    font-size: 11px;
+}
+
+.kingdom-back-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #8d6e42 !important;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+
+/* ==========================================
+   ٨. الوضع الليلي
+========================================== */
+
+html.dark .site-footer.kingdom-footer {
+    background: #1c2721;
+    border-top-color: #455149;
+    color: #e7e9dd;
+}
+
+html.dark .kingdom-footer .kingdom-brand-type strong {
+    color: #f0e9dc;
+}
+
+html.dark .kingdom-footer .kingdom-brand-type small {
+    color: #d8b982;
+}
+
+html.dark .kingdom-footer-column h3 {
+    color: #f0e9dc;
+}
+
+html.dark .kingdom-footer-about > p,
+html.dark .kingdom-footer-references p,
+html.dark .kingdom-footer-column ul a,
+html.dark .kingdom-footer-references > a {
+    color: #b9c5b9;
+}
+
+html.dark .kingdom-footer-column ul a:hover,
+html.dark .kingdom-footer-references > a:hover {
+    color: #e2be83;
+}
+
+html.dark .kingdom-footer-tag {
+    color: #d8b982;
+}
+
+html.dark .kingdom-footer-bottom {
+    border-top-color: #455149;
+    color: #b6c0b3;
+}
+
+html.dark .home-journey-intro h2 em,
+html.dark .home-discover h2 em {
+    color: #d4ad73;
+}
+
+html.dark .home-feature-card {
+    background: #303b35;
+    border-color: #49564c;
+}
+
+html.dark .home-feature-card h3 {
+    color: #f0e9dc;
+}
+
+html.dark .home-feature-link {
+    color: #e4c18a;
+}
+
+
+/* ==========================================
+   ٩. الأجهزة اللوحية
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .kingdom-footer-top {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 45px;
+    }
+
+    .home-discover-heading {
+        align-items: start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .home-discover-heading > p {
+        max-width: 700px;
+    }
+}
+
+
+/* ==========================================
+   ١٠. الجوال
+========================================== */
+
+@media (max-width: 768px) {
+
+    .kingdom-brand-mark {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+
+    .kingdom-brand-mark svg {
+        width: 31px;
+        height: 31px;
+    }
+
+    .kingdom-brand-type strong {
+        font-size: 18px;
+    }
+
+    .kingdom-brand-type small {
+        font-size: 8px;
+    }
+
+    .home-hero {
+        min-height: 760px;
+    }
+
+    .home-hero-inner {
+        padding-top: 155px;
+        padding-bottom: 100px;
+    }
+
+    .home-hero h1 {
+        font-size: clamp(45px, 11vw, 70px);
+    }
+
+    .home-hero h1 span {
+        font-size: clamp(27px, 7vw, 43px);
+    }
+
+    .home-hero-overlay {
+        background:
+            linear-gradient(
+                270deg,
+                rgba(12, 32, 22, .93),
+                rgba(12, 32, 22, .78)
+            );
+    }
+
+    .home-hero-stats {
+        gap: 18px 0;
+        margin-top: 50px;
+    }
+
+    .home-hero-stats > div {
+        min-width: 33.33%;
+        padding-left: 8px;
+        margin-left: 0;
+    }
+
+    .home-hero-stats strong {
+        font-size: 19px;
+    }
+
+    .home-hero-stats span {
+        font-size: 9px;
+    }
+
+    .home-journey-intro {
+        padding: 75px 15px 45px;
+    }
+
+    .kingdom-home .states-showcase {
+        height: auto;
+        min-height: 0;
+    }
+
+    .kingdom-home .state-panel {
+        min-height: 400px;
+    }
+
+    .kingdom-home .state-panel:first-child {
+        min-height: 400px;
+        padding-top: 0;
+    }
+
+    .home-discover {
+        padding: 80px 0;
+    }
+
+    .home-features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-feature-card {
+        min-height: 250px;
+        padding: 28px;
+    }
+
+    .home-ending {
+        padding: 85px 10px;
+    }
+
+    .kingdom-footer-top {
+        gap: 36px 22px;
+        padding: 50px 0 40px;
+    }
+
+    .kingdom-footer-bottom {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .kingdom-footer-top {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .kingdom-footer-about,
+    .kingdom-footer-references {
+        grid-column: 1 / -1;
+    }
+
+    .home-hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .home-primary-button,
+    .home-secondary-button {
+        width: min(100%, 280px);
+    }
+
+    .home-hero-stats {
+        flex-wrap: wrap;
+    }
+
+    .home-hero-stats > div {
+        min-width: 33.33%;
+    }
+}
+
+
+/* ==========================================
+   ١١. تقليل الحركة
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .kingdom-home *,
+    .kingdom-home *::before,
+    .kingdom-home *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+/* عرض أول لقطة من الفيديو بدل صورة البنر */
+
+.kingdom-home .state-panel {
+    background-image: none !important;
+    background-color: #14251c;
+}
+
+.kingdom-home .state-panel-video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* تغميق اللقطة الثابتة للحفاظ على وضوح النص */
+
+.kingdom-home .state-panel::before {
+    background: rgba(5, 21, 13, 0.60);
+}
+
+/* إظهار الفيديو بشكل أوضح عند التمرير */
+
+.kingdom-home .state-panel.is-playing::before {
+    background: rgba(5, 21, 13, 0.25);
+}
+
+/* ==========================================
+   شعار المملكة — النخلة والسيفان
+========================================== */
+
+.kingdom-brand-mark {
+    width: 55px;
+    height: 55px;
+    flex: 0 0 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.kingdom-emblem {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    /* تحويل لون الشعار إلى ذهبي */
+    filter: brightness(0) saturate(100%)
+        invert(78%) sepia(25%)
+        saturate(555%) hue-rotate(353deg)
+        brightness(92%) contrast(89%);
+}
+
+.navbar .kingdom-brand {
+    gap: 10px;
+}
+
+.kingdom-brand-type strong {
+    font-size: 22px;
+    font-weight: 900;
+}
+
+/* شعار الفوتر */
+
+.kingdom-footer .kingdom-brand-mark {
+    width: 65px;
+    height: 65px;
+    flex-basis: 65px;
+}
+
+/* الجوال */
+
+@media (max-width: 768px) {
+
+    .navbar .kingdom-brand-mark {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+    }
+
+    .kingdom-footer .kingdom-brand-mark {
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+    }
+
+    .kingdom-brand-type strong {
+        font-size: 19px;
+    }
+}
+/* ضبط حجم الشعار ومسافات الفوتر */
+
+.kingdom-footer .kingdom-brand-mark {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+}
+
+.kingdom-footer .kingdom-emblem {
+    width: 100%;
+    height: 100%;
+}
+
+.kingdom-footer-top {
+    align-items: start;
+    padding-top: 50px;
+    padding-bottom: 40px;
+}
+
+.kingdom-footer-about > p {
+    margin: 15px 0;
+}
+
+.kingdom-footer-column h3 {
+    margin-bottom: 18px;
+}
+
+/* ==========================================
+   FINAL FOOTER LOGO FIX
+========================================== */
+
+.kingdom-footer .kingdom-footer-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 12px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.kingdom-footer .kingdom-footer-logo .kingdom-brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px;
+    max-width: 50px;
+
+    flex: 0 0 50px !important;
+
+    padding: 0;
+    margin: 0;
+    background: transparent !important;
+    border: 0 !important;
+}
+
+.kingdom-footer .kingdom-footer-logo img.kingdom-emblem {
+    display: block;
+
+    width: 50px !important;
+    height: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+
+    object-fit: contain;
+}
+
+.kingdom-footer .kingdom-footer-logo .kingdom-brand-type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.kingdom-footer .kingdom-brand-type strong {
+    font-size: 22px;
+    line-height: 1.2;
+}
+
+.kingdom-footer .kingdom-brand-type small {
+    font-size: 10px;
+}
+
+.kingdom-footer .kingdom-footer-about > p {
+    margin-top: 18px;
+    max-width: 330px;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .kingdom-footer .kingdom-footer-logo .kingdom-brand-mark,
+    .kingdom-footer .kingdom-footer-logo img.kingdom-emblem {
+        width: 44px !important;
+        height: 44px !important;
+        max-width: 44px !important;
+        max-height: 44px !important;
+        min-width: 44px;
+        flex-basis: 44px !important;
+    }
+}

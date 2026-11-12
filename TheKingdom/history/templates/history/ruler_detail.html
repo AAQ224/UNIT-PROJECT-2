@@ -2,167 +2,736 @@
 {% extends 'history/base.html' %}
 {% load static %}
 
-{% block title %}{{ ruler.name }} | TheKingdom{% endblock %}
+{% block title %}
+{{ ruler.name }} | {{ chapter_title }}
+{% endblock %}
+
+{% block extra_head %}
+
+<meta
+    name="description"
+    content="تعرف على سيرة {{ ruler.name }} وأبرز أحداث عهده ضمن تاريخ {{ chapter_title }}."
+>
+
+<link
+    rel="stylesheet"
+    href="{% static 'history/css/rulers.css' %}"
+>
+
+{% endblock %}
+
 
 {% block content %}
 
-<!-- RULER HERO -->
-<section class="ruler-hero">
-    <div class="container">
+<main
+    class="bio-page bio-era-{{ era }} {% if is_founder %}bio-founder{% endif %}"
+    id="bioPage"
+    dir="rtl"
+>
 
-        <div class="ruler-hero-grid">
+    <div
+        class="bio-progress"
+        id="bioProgress"
+        aria-hidden="true"
+    ></div>
 
-            <!-- Text -->
-            <div class="ruler-hero-info">
+    <!-- ================================
+         ١. الافتتاحية
+    ================================= -->
 
-                <a
-                    href="{% url 'state_detail' era %}"
-                    class="ruler-back"
-                >
-                    <i class="bi bi-arrow-right"></i>
-                    العودة إلى {{ state_title }}
+    <header class="bio-hero" id="bio-top">
+
+        <div class="bio-hero-backdrop"></div>
+
+        <div class="bio-hero-glow"></div>
+
+        <div class="bio-container">
+
+            <nav
+                class="bio-breadcrumb"
+                aria-label="مسار التصفح"
+            >
+
+                <a href="{% url 'home' %}">
+                    الرئيسية
                 </a>
 
-                <span class="ruler-eyebrow">
-                    LEADERS THROUGH HISTORY
+                <i class="bi bi-chevron-left"></i>
+
+                <a href="{% url 'state_detail' era %}">
+                    {{ chapter_title }}
+                </a>
+
+                <i class="bi bi-chevron-left"></i>
+
+                <span aria-current="page">
+                    {{ ruler.name }}
                 </span>
 
-                <h1>{{ ruler.name }}</h1>
+            </nav>
 
-                <p class="ruler-subtitle">
-                    {{ ruler.subtitle }}
-                </p>
+            <div class="bio-hero-grid">
 
-                <a href="#biography" class="ruler-primary-btn">
-                    اكتشف السيرة
+                <div class="bio-hero-copy">
+
+                    <span class="bio-kicker">
+                        <span class="bio-kicker-line"></span>
+                        {{ hero_label }}
+                    </span>
+
+                    <div class="bio-chapter">
+                        {{ chapter_label }} — سيرة حاكم
+                    </div>
+
+                    <h1>{{ ruler.name }}</h1>
+
+                    {% if ruler_title %}
+                    <p class="bio-hero-title">
+                        {{ ruler_title }}
+                    </p>
+                    {% endif %}
+
+                    <div class="bio-hero-rule"></div>
+
+                    {% if introduction %}
+                    <p class="bio-hero-intro">
+                        {{ introduction }}
+                    </p>
+                    {% else %}
+                    <p class="bio-hero-intro">
+                        صفحة تاريخية تتناول سيرة
+                        {{ ruler.name }}
+                        ضمن تاريخ
+                        {{ chapter_title }}.
+                    </p>
+                    {% endif %}
+
+                    <div class="bio-hero-meta">
+
+                        {% if ruler.period %}
+                        <div class="bio-meta-item">
+                            <span>فترة الحكم</span>
+                            <strong class="bio-digits">
+                                {{ ruler.period }}
+                            </strong>
+                        </div>
+                        {% endif %}
+
+                        <div class="bio-meta-item">
+                            <span>الدولة</span>
+                            <strong>{{ chapter_title }}</strong>
+                        </div>
+
+                        <div class="bio-meta-item">
+                            <span>الترتيب في هذه الصفحة</span>
+                            <strong class="bio-digits">
+                                {{ ruler_number }} من {{ ruler_count }}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <div class="bio-hero-actions">
+
+                        <a
+                            href="#bio-story"
+                            class="bio-btn bio-btn-primary"
+                        >
+                            اقرأ السيرة
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+
+                        <a
+                            href="{% url 'state_detail' era %}"
+                            class="bio-btn bio-btn-outline"
+                        >
+                            العودة إلى الدولة
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="bio-portrait-wrap">
+
+                    <div class="bio-portrait-frame">
+
+                        {% if ruler.image %}
+                        <img
+                            class="bio-portrait"
+                            src="{% static ruler.image %}"
+                            alt="{{ ruler.name }}"
+                            fetchpriority="high"
+                        >
+                        {% else %}
+                        <div class="bio-portrait-empty">
+                            <i class="bi bi-person"></i>
+                        </div>
+                        {% endif %}
+
+                        <div class="bio-portrait-shade"></div>
+
+                        <span
+                            class="bio-portrait-number bio-digits"
+                            aria-hidden="true"
+                        >
+                            {{ ruler_number }}
+                        </span>
+
+                    </div>
+
+                    <div class="bio-portrait-caption">
+                        <span>{{ chapter_title }}</span>
+                        <span>{{ ruler.name }}</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="bio-hero-bottom">
+
+                <span>
+                    صفحات من تاريخ المملكة
+                </span>
+
+                <a href="#bio-story">
+                    مرّر لاكتشاف السيرة
                     <i class="bi bi-arrow-down"></i>
                 </a>
 
             </div>
 
-            <!-- Portrait -->
-            <div class="ruler-hero-portrait">
-                <img
-                    src="{% static ruler.image %}"
-                    alt="{{ ruler.name }}"
-                >
-            </div>
-
         </div>
 
-    </div>
-</section>
+    </header>
 
-<!-- BIOGRAPHY -->
-<section id="biography" class="ruler-biography">
-    <div class="container">
 
-        <div class="ruler-section-heading">
-            <span>HISTORICAL PROFILE</span>
-            <h2>نبذة تاريخية</h2>
-        </div>
+    <!-- ================================
+         ٢. السيرة التاريخية
+    ================================= -->
 
-        <p class="ruler-overview-text">
-            {{ ruler.overview }}
-        </p>
+    <section
+        class="bio-story bio-section"
+        id="bio-story"
+    >
 
-        <!-- Facts -->
-        {% if ruler.facts %}
-        <div class="ruler-facts-grid">
+        <div class="bio-container">
 
-            {% for label, value in ruler.facts.items %}
-            <div class="ruler-fact-card">
+            <div class="bio-section-heading bio-reveal">
 
-                <span class="ruler-fact-label">
-                    {{ label }}
+                <span class="bio-section-index">
+                    ٠١ — الحكاية
                 </span>
 
-                <strong>{{ value }}</strong>
-
-            </div>
-            {% endfor %}
-
-        </div>
-        {% endif %}
-
-    </div>
-</section>
-
-<!-- MILESTONES -->
-{% if ruler.milestones %}
-<section class="ruler-milestones">
-    <div class="container">
-
-        <div class="ruler-section-heading">
-            <span>KEY MILESTONES</span>
-            <h2>محطات بارزة</h2>
-        </div>
-
-        <div class="ruler-timeline">
-
-            {% for milestone in ruler.milestones %}
-
-            <div class="ruler-timeline-item">
-
-                <div class="ruler-timeline-marker">
-                    <span>{{ forloop.counter }}</span>
-                </div>
-
-                <div class="ruler-timeline-content">
-                    <p>{{ milestone }}</p>
-                </div>
+                <h2>
+                    صفحات من
+                    <em>سيرته.</em>
+                </h2>
 
             </div>
 
-            {% endfor %}
+            <div class="bio-story-grid">
+
+                <div class="bio-story-aside bio-reveal">
+
+                    <div class="bio-story-quote">
+                        <i class="bi bi-book-half"></i>
+
+                        <span>السيرة التاريخية</span>
+
+                        <strong>{{ ruler.name }}</strong>
+                    </div>
+
+                    <div class="bio-story-identity">
+
+                        <span>فصل من تاريخ</span>
+
+                        <strong>
+                            {{ chapter_title }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <article class="bio-story-content bio-reveal">
+
+                    {% if story %}
+
+                    <div class="bio-story-text">
+                        {{ story|linebreaks }}
+                    </div>
+
+                    {% else %}
+
+                    <p class="bio-empty-text">
+                        لم تُضف السيرة التفصيلية لهذا
+                        الحاكم إلى ملف البيانات بعد.
+                    </p>
+
+                    {% endif %}
+
+                </article>
+
+            </div>
 
         </div>
 
-    </div>
-</section>
-{% endif %}
+    </section>
 
-<!-- LEGACY -->
-{% if ruler.legacy %}
-<section class="ruler-legacy">
-    <div class="container">
 
-        <div class="ruler-legacy-content">
+    <!-- ================================
+         الفصول السردية الخاصة بالحاكم
+    ================================= -->
 
-            <span class="ruler-eyebrow">
-                LEGACY & IMPACT
-            </span>
+    {% if story_chapters %}
 
-            <h2>الإرث والتأثير</h2>
+    <section
+        class="bio-chapters bio-section"
+        id="bio-chapters"
+    >
 
-            <p>{{ ruler.legacy }}</p>
+        <div class="bio-container">
+
+            <div class="bio-section-heading bio-reveal">
+
+                <span class="bio-section-index">
+                    {{ storyline.eyebrow }}
+                </span>
+
+                <h2>{{ storyline.headline }}</h2>
+
+                <p>{{ storyline.lead }}</p>
+
+            </div>
+
+            <div class="bio-chapters-list">
+
+                {% for chapter in story_chapters %}
+
+                <article
+                    class="bio-chapter-scene bio-reveal {% cycle 'bio-scene-a' 'bio-scene-b' %}"
+                >
+
+                    <div class="bio-chapter-visual">
+
+                        {% if chapter.image %}
+
+                        <img
+                            src="{% static chapter.image %}"
+                            alt="{{ chapter.title }}"
+                            loading="lazy"
+                        >
+
+                        {% endif %}
+
+                        {% if chapter.image_note %}
+
+                        <small>
+                            {{ chapter.image_note }}
+                        </small>
+
+                        {% endif %}
+
+                    </div>
+
+                    <div class="bio-chapter-copy">
+
+                        <span class="bio-chapter-counter">
+                            {{ chapter.number }} — {{ chapter.kicker }}
+                        </span>
+
+                        <span class="bio-chapter-date bio-digits">
+                            {{ chapter.year }}
+                        </span>
+
+                        <h3>{{ chapter.title }}</h3>
+
+                        {% for paragraph in chapter.paragraphs %}
+
+                        <p>{{ paragraph }}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
 
         </div>
 
-    </div>
-</section>
-{% endif %}
+    </section>
 
-<!-- BACK TO STATE -->
-<section class="ruler-bottom">
-    <div class="container">
+    {% endif %}
 
-        <h2>استكشف المزيد من تاريخ المملكة</h2>
 
-        <p>
-            تعرّف على بقية الحكام
-            والأحداث التاريخية للدولة السعودية.
-        </p>
+    <!-- ================================
+         المعلومات التاريخية للحاكم
+    ================================= -->
 
-        <a
-            href="{% url 'state_detail' era %}"
-            class="ruler-primary-btn"
-        >
-            العودة إلى {{ state_title }}
-            <i class="bi bi-arrow-left"></i>
-        </a>
+    {% if fact_items %}
 
-    </div>
-</section>
+    <section
+        class="bio-facts bio-section"
+        id="bio-facts"
+    >
+
+        <div class="bio-container">
+
+            <div class="bio-section-heading bio-reveal">
+
+                <span class="bio-section-index">
+                    الوثيقة التاريخية
+                </span>
+
+                <h2>
+                    معلومات
+                    <em>الحاكم.</em>
+                </h2>
+
+            </div>
+
+            <dl class="bio-facts-grid bio-reveal">
+
+                {% for item in fact_items %}
+
+                <div class="bio-fact-item">
+
+                    <dt>{{ item.label }}</dt>
+
+                    <dd class="bio-digits">
+                        {{ item.value }}
+                    </dd>
+
+                </div>
+
+                {% endfor %}
+
+            </dl>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================================
+         ٣. أبرز الإنجازات
+    ================================= -->
+
+    {% if highlights %}
+
+    <section
+        class="bio-highlights bio-section"
+        id="bio-highlights"
+    >
+
+        <div class="bio-container">
+
+            <div class="bio-section-heading bio-reveal">
+
+                <span class="bio-section-index">
+                    ٠٢ — الأثر
+                </span>
+
+                <h2>
+                    أبرز محطات
+                    <em>عهده.</em>
+                </h2>
+
+                <p>
+                    لمحات من الأحداث والإنجازات
+                    المسجلة في سيرته التاريخية.
+                </p>
+
+            </div>
+
+            <div class="bio-highlights-grid">
+
+                {% for item in highlights %}
+
+                <article class="bio-highlight-card bio-reveal">
+
+                    <span class="bio-highlight-number bio-digits">
+                        {{ forloop.counter }}
+                    </span>
+
+                    <div class="bio-highlight-icon">
+                        <i class="bi bi-stars"></i>
+                    </div>
+
+                    {% if item.title %}
+                    <h3>{{ item.title }}</h3>
+                    {% endif %}
+
+                    {% if item.description %}
+                    <p>{{ item.description }}</p>
+                    {% endif %}
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================================
+         ٤. التسلسل التاريخي
+    ================================= -->
+
+    {% if events %}
+
+    <section
+        class="bio-timeline-section bio-section"
+        id="bio-timeline"
+    >
+
+        <div class="bio-container">
+
+            <div class="bio-section-heading bio-reveal">
+
+                <span class="bio-section-index">
+                    ٠٣ — التسلسل التاريخي
+                </span>
+
+                <h2>
+                    محطات من
+                    <em>التاريخ.</em>
+                </h2>
+
+            </div>
+
+            <div class="bio-timeline">
+
+                {% for event in events %}
+
+                <article class="bio-timeline-item bio-reveal">
+
+                    <div class="bio-timeline-marker"></div>
+
+                    <div class="bio-timeline-card">
+
+                        {% if event.year %}
+                        <span class="bio-timeline-year bio-digits">
+                            {{ event.year }}
+                        </span>
+                        {% endif %}
+
+                        {% if event.title %}
+                        <h3>{{ event.title }}</h3>
+                        {% endif %}
+
+                        {% if event.description %}
+                        <p>{{ event.description }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================================
+         ٥. الإرث التاريخي
+    ================================= -->
+
+    {% if legacy %}
+
+    <section
+        class="bio-legacy bio-section"
+        id="bio-legacy"
+    >
+
+        <div class="bio-container">
+
+            <div class="bio-legacy-inner bio-reveal">
+
+                <span class="bio-section-index">
+                    الإرث التاريخي
+                </span>
+
+                <h2>
+                    أثرٌ باقٍ
+                    <em>في التاريخ.</em>
+                </h2>
+
+                <div class="bio-legacy-text">
+                    {{ legacy|linebreaks }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================================
+         ٦. المصادر
+    ================================= -->
+
+    {% if sources %}
+
+    <section class="bio-sources bio-section">
+
+        <div class="bio-container">
+
+            <div class="bio-section-heading bio-reveal">
+
+                <span class="bio-section-index">
+                    المراجع
+                </span>
+
+                <h2>
+                    مصادر
+                    <em>السيرة.</em>
+                </h2>
+
+            </div>
+
+            <div class="bio-sources-list">
+
+                {% for source in sources %}
+
+                <a
+                    href="{{ source.url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="bio-source-link"
+                >
+                    {{ source.title }}
+                    <i class="bi bi-box-arrow-up-left"></i>
+                </a>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================================
+         ٧. التنقل بين الحكام
+    ================================= -->
+
+    <section class="bio-navigation bio-section">
+
+        <div class="bio-container">
+
+            <div class="bio-navigation-heading bio-reveal">
+
+                <span class="bio-section-index">
+                    تابع الرحلة
+                </span>
+
+                <h2>
+                    صفحات أخرى من
+                    <em>التاريخ.</em>
+                </h2>
+
+            </div>
+
+            <div class="bio-navigation-grid">
+
+                {% if previous_ruler %}
+
+                <a
+                    href="{% url 'ruler_detail' previous_ruler.slug %}"
+                    class="bio-navigation-card bio-reveal"
+                >
+
+                    <span>
+                        <i class="bi bi-arrow-right"></i>
+                        الحاكم السابق
+                    </span>
+
+                    <strong>
+                        {{ previous_ruler.name }}
+                    </strong>
+
+                </a>
+
+                {% endif %}
+
+                <a
+                    href="{% url 'state_detail' era %}"
+                    class="bio-navigation-card bio-navigation-home bio-reveal"
+                >
+
+                    <span>
+                        <i class="bi bi-grid"></i>
+                        العودة إلى الفصل
+                    </span>
+
+                    <strong>
+                        {{ chapter_title }}
+                    </strong>
+
+                </a>
+
+                {% if next_ruler %}
+
+                <a
+                    href="{% url 'ruler_detail' next_ruler.slug %}"
+                    class="bio-navigation-card bio-reveal"
+                >
+
+                    <span>
+                        الحاكم التالي
+                        <i class="bi bi-arrow-left"></i>
+                    </span>
+
+                    <strong>
+                        {{ next_ruler.name }}
+                    </strong>
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+{% endblock %}
+
+
+{% block extra_scripts %}
+
+<script
+    src="{% static 'history/js/rulers.js' %}"
+    defer
+></script>
 
 {% endblock %}
